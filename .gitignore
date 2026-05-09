@@ -1,0 +1,5 @@
+# Keep this public backlink repo sanitized.
+*
+!.gitignore
+!README.md
+!LICENSE
