@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fastlayne/grey-mirror-relationship-text-analysis/examples/sample-report-schema.json",
+  "title": "Grey Mirror Public Sample Report Shape",
+  "description": "A public, non-proprietary schema sketch for relationship text analysis report sections. It describes output shape only and contains no private user messages or model internals.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "reportId",
+    "relationshipRoute",
+    "messageCount",
+    "participants",
+    "metrics",
+    "timeline",
+    "evidence",
+    "limitations"
+  ],
+  "properties": {
+    "reportId": {
+      "type": "string",
+      "description": "Opaque report identifier."
+    },
+    "relationshipRoute": {
+      "type": "string",
+      "enum": ["romantic", "platonic", "family", "other"],
+      "description": "Interpretive route selected for the analysis."
+    },
+    "messageCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of normalized messages included in the report."
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["participantId", "displayLabel"],
+        "properties": {
+          "participantId": { "type": "string" },
+          "displayLabel": { "type": "string" },
+          "messageCount": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["metricId", "label", "value", "confidence"],
+        "properties": {
+          "metricId": { "type": "string" },
+          "label": { "type": "string" },
+          "value": {
+            "oneOf": [
+              { "type": "number" },
+              { "type": "string" },
+              { "type": "null" }
+            ]
+          },
+          "unit": { "type": ["string", "null"] },
+          "confidence": {
+            "type": "string",
+            "enum": ["high", "medium", "low", "insufficient"]
+          },
+          "summary": { "type": "string" },
+          "evidenceRefs": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["windowId", "label", "start", "end"],
+        "properties": {
+          "windowId": { "type": "string" },
+          "label": { "type": "string" },
+          "start": { "type": "string", "format": "date-time" },
+          "end": { "type": "string", "format": "date-time" },
+          "messageCount": { "type": "integer", "minimum": 0 },
+          "signals": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidenceId", "scope", "description"],
+        "properties": {
+          "evidenceId": { "type": "string" },
+          "scope": {
+            "type": "string",
+            "enum": ["message", "window", "metric", "timeline"]
+          },
+          "description": { "type": "string" },
+          "redactedPreview": { "type": ["string", "null"] },
+          "confidence": {
+            "type": "string",
+            "enum": ["high", "medium", "low", "insufficient"]
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Plain-language limitations surfaced with the report."
+    }
+  }
+}

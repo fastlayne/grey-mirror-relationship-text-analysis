@@ -3,5 +3,10 @@
 !.gitignore
 !README.md
 !LICENSE
+!CITATION.cff
+!SECURITY.md
+!PRIVACY.md
 !docs/
 !docs/**
+!examples/
+!examples/**

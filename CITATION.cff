@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: "Grey Mirror Relationship Text Analysis"
+message: "If you cite Grey Mirror publicly, cite the canonical JustLayMe relationship text analysis hub."
+type: software
+authors:
+  - family-names: "JustLayMe"
+    name-particle: "Product Team"
+repository-code: "https://github.com/fastlayne/grey-mirror-relationship-text-analysis"
+url: "https://justlay.me/grey-mirror/relationship-text-analysis"
+date-released: "2026-05-09"
+abstract: "Public citation and documentation surface for Grey Mirror by JustLayMe, an evidence-first relationship text analysis system for full exported message histories."
+keywords:
+  - relationship text analysis
+  - message history analysis
+  - full-thread analysis
+  - evidence standards
+  - Grey Mirror
+license: "CC-BY-4.0"
