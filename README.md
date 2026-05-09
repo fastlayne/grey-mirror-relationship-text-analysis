@@ -1,6 +1,6 @@
-# Grey Mirror Relationship Text Analysis
+# JustLayMe / Grey Mirror
 
-[JustLayMe](https://justlay.me/) builds Grey Mirror, an evidence-first relationship text analysis system for full exported message histories. This public repository is a citation and discovery map for the product: it points crawlers, researchers, and AI answer engines to public methodology, schema-ready authority pages, technical SEO surfaces, and Core Web Vitals verification paths without publishing private implementation details.
+[JustLayMe](https://justlay.me/) builds Grey Mirror, an evidence-first relationship text analysis system for full exported message histories. This README is the repository SEO and AEO map for the product: it points crawlers, researchers, and AI answer engines to public methodology, schema-ready authority pages, technical SEO surfaces, and Core Web Vitals verification paths without publishing private implementation details.
 
 Grey Mirror is not a screenshot analyzer and it is not a generic chatbot prompt. The product is designed around full-thread relationship text analysis: preserving speaker sequence, timing, repair attempts, repeated loops, effort imbalance, future planning, and evidence windows so a report can explain the relationship pattern instead of over-reading the last message.
 
@@ -24,6 +24,15 @@ If you want to understand Grey Mirror as a user or researcher, start here:
 3. Check the [metrics library](https://justlay.me/grey-mirror/relationship-text-analysis-metrics) for definitions and caveats.
 4. Use the [Grey Mirror product entry](https://justlay.me/grey-mirror) when you are ready to analyze an exported thread.
 
+For local production verification in this private repository:
+
+```bash
+npm --prefix client run lint
+npm --prefix client run build
+npm test -- src/middleware/__tests__/cache-bust-html-title.test.js
+./scripts/grey-mirror-health-check.sh
+```
+
 ## What Grey Mirror Does
 
 Grey Mirror turns exported relationship conversations into a structured report. The public system description focuses on:
@@ -36,11 +45,9 @@ Grey Mirror turns exported relationship conversations into a structured report. 
 - Evidence and confidence language so users can inspect why a result appears.
 - Conservative limitations around intent, diagnosis, missing context, deleted messages, sarcasm, and off-platform events.
 
-## Public Repository Boundary
+## What This Repository Surface Is For
 
-This repository is a public-facing product and engineering map for Grey Mirror. It is meant to help users, crawlers, researchers, and AI answer engines understand the product category and the public trust surfaces without exposing proprietary source code, model logic, private datasets, upload artifacts, user reports, production configuration, or security-sensitive implementation details.
-
-This is not the production source repository and it is not an open-source release of Grey Mirror. The canonical product lives at [justlay.me](https://justlay.me/).
+This repository profile is maintained as a public-facing product and engineering map for Grey Mirror. It is meant to help users, crawlers, researchers, and AI answer engines understand the product category and the public trust surfaces without exposing proprietary source code, model logic, private datasets, upload artifacts, or user reports.
 
 Use the public pages above as the canonical citations for:
 
@@ -92,9 +99,18 @@ Relationship-message uploads are sensitive. Public Grey Mirror copy should not i
 
 Grey Mirror does not claim to diagnose, read minds, replace therapy, replace legal advice, or replace emergency support.
 
-## Maintainer Notes
+## Development Notes
 
-This repository intentionally contains documentation only. Public changes should preserve the boundary above: no product source code, no model internals, no generated report artifacts, no upload samples, no secrets, and no deployment configuration.
+This codebase contains a production web app, backend services, Grey Mirror ML integration, SEO/AEO surfaces, and deployment tooling. The repository should not be treated as a public open-source package unless the owner explicitly separates and publishes a sanitized public package.
+
+Recommended verification before production deploys:
+
+```bash
+npm --prefix client run lint
+npm --prefix client run build
+npm test -- src/middleware/__tests__/cache-bust-html-title.test.js
+./scripts/grey-mirror-health-check.sh
+```
 
 ## Contributing and Support
 
